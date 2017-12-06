@@ -1,0 +1,91 @@
+== Building from Source
+You don't need to build from source to use Spring Boot (binaries in
+http://repo.spring.io[repo.spring.io]), but if you want to try out the latest and
+greatest, Spring Boot can be easily built with the
+https://github.com/takari/maven-wrapper[maven wrapper]. You also need JDK 1.8.
+
+[indent=0]
+----
+	$ mvn clean install
+----
+
+If you want to build with the regular `mvn` command, you will need
+http://maven.apache.org/run-maven/index.html[Maven v3.2.1 or above].
+
+NOTE: You may need to increase the amount of memory available to Maven by setting
+a `MAVEN_OPTS` environment variable with the value `-Xmx512m`. Remember
+to set the corresponding property in your IDE as well if you are building and running
+tests there (e.g. in Eclipse go to `Preferences->Java->Installed JREs` and edit the
+JRE definition so that all processes are launched with those arguments). This property
+is automatically set if you use the maven wrapper.
+
+== Modules
+There are a number of modules in Spring Boot, here is a quick overview:
+
+
+
+=== spring-boot
+The main library providing features that support the other parts of Spring Boot,
+these include:
+
+* The `SpringApplication` class, providing static convenience methods that make it easy
+to write a stand-alone Spring Application. Its sole job is to create and refresh an
+appropriate Spring `ApplicationContext`
+* Embedded web applications with a choice of container (Tomcat, Jetty or Undertow)
+* First class externalized configuration support
+* Convenience `ApplicationContext` initializers, including support for sensible logging
+defaults
+
+
+
+=== spring-boot-autoconfigure
+Spring Boot can configure large parts of common applications based on the content
+of their classpath. A single `@EnableAutoConfiguration` annotation triggers
+auto-configuration of the Spring context.
+
+Auto-configuration attempts to deduce which beans a user might need. For example, if
+`HSQLDB` is on the classpath, and the user has not configured any database connections,
+then they probably want an in-memory database to be defined. Auto-configuration will
+always back away as the user starts to define their own beans.
+
+
+
+=== spring-boot-starters
+Starters are a set of convenient dependency descriptors that you can include in
+your application. You get a one-stop-shop for all the Spring and related technology
+that you need without having to hunt through sample code and copy paste loads of
+dependency descriptors. For example, if you want to get started using Spring and JPA for
+database access just include the `spring-boot-starter-data-jpa` dependency in your
+project, and you are good to go.
+
+
+
+=== spring-boot-cli
+The Spring command line application compiles and runs Groovy source, making it super
+easy to write the absolute minimum of code to get an application running. Spring CLI
+can also watch files, automatically recompiling and restarting when they change.
+
+
+
+=== spring-boot-actuator
+Spring Boot Actuator provides additional auto-configuration to decorate your application
+with features that make it instantly deployable and supportable in production.  For
+instance if you are writing a JSON web service then it will provide a server, security,
+logging, externalized configuration, management endpoints, an audit abstraction, and
+more. If you want to switch off the built in features, or extend or replace them, it
+makes that really easy as well.
+
+== Guides
+The http://spring.io/[spring.io] site contains several guides that show how to use Spring
+Boot step-by-step:
+
+* http://start.spring.io[Start Point] could be a site that can help building an app with
+  all the required dependencies.
+
+* http://spring.io/guides/gs/spring-boot/[Building an Application with Spring Boot] is a
+  very basic guide that shows you how to create a simple application, run it and add some
+  management services.
+* http://spring.io/guides/gs/actuator-service/[Building a RESTful Web Service with Spring
+  Boot Actuator] is a guide to creating a REST web service and also shows how the server
+  can be configured.
+* https://docs.spring.io/spring-data/jpa/docs/current/reference/html[Spring Data JPA reference]
